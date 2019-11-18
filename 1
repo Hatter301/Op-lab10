@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+	int i, n;
+	int *a;
+	void quicksort(int f,int l) {
+    int f1,l1,t,g;
+    g=a[(f+l)/2];
+    f1=f;
+    l1=l;
+    do {
+    while (a[f1]<g)
+    f1++;
+    while(a[l1]>g)
+    l1--;
+    if(f1<=l1) {
+        t=a[f1];
+        a[f1]=a[l1];
+        a[l1]=t;
+        f1++;
+        l1--;
+    }
+    }
+    while(f1<=l1);
+    if(l1>f)
+    quicksort(f,l1);
+    if(f1<l)
+    quicksort(f1,l);
+}
+int main() {
+	scanf("%d",&n);
+	if (n <= 1)
+		printf("Данные введены некорректно");
+	else {
+		a = (int *)malloc(n * sizeof(int));
+		for (i=0; i<n; i++) 
+			scanf("%d",&a[i]);
+	quicksort(0,n-1);
+		for (i=0; i < n; i++)
+			printf("%d ",a[i]);
+		free(a);
+	}
+	return 0;
+}
